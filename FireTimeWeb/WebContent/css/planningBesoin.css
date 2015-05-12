@@ -1,0 +1,38 @@
+	a.piquet {
+		color: firebrick;
+		font-weight: bold;
+		text-decoration: none
+	}
+	.empty {
+		background-color: red;
+    		border-color: red;
+    		color: white;
+	}
+
+	.incomplete {
+		background-color: Darkorange;
+    	border-color: Darkorange;
+		color: white;
+	}
+	.complete_stat {
+		background-color: yellow;
+		border-color: yellow;
+		color: black;
+	}
+
+	.complete_piquet {
+		background-color: Chartreuse;
+		border-color: Chartreuse;
+		color: black;
+	}
+	.periode {
+		border-width: 1px 0;
+		border-style: solid;
+		font-size: 0.85em;
+		margin: 1px;
+    	padding: 2px 2px 1px;
+	}	
+	.day {
+		width : 180px;
+		vertical-align: top;
+	}

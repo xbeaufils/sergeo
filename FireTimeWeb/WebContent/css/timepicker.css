@@ -1,0 +1,18 @@
+.timepicker {
+	display : none;
+	width: 200px;
+	position: absolute;
+}
+.timepicker table{
+	width: 100%;
+	border: medium solid black;
+}
+
+
+.hour td{
+	border: thin solid black;
+}
+.minute td {
+	text-align: center;
+
+}

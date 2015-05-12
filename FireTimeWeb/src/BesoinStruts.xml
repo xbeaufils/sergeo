@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+ 	<package name="fireTimeWeb.admin" namespace="/besoin" extends="struts-default">
+        <interceptors>
+              	<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+                <interceptor-stack name="defaultLoginStack">
+					<interceptor-ref name="defaultStack" />
+	                <interceptor-ref name="login" />
+	            </interceptor-stack>
+        </interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+		<global-results>
+			<result name="login">/inscription.jsp</result>
+		</global-results>
+  	     <action name="liste" method="view" class="fr.firesoft.firetime.action.BesoinAction">
+	        <result name="input">/besoins/editBesoin.jsp</result>
+	        <result name="success">/besoins/editBesoin.jsp</result>
+	     </action>
+   	     <action name="add" method="viewBesoinEquipage" class="fr.firesoft.firetime.action.BesoinAction">
+	    	<interceptor-ref name="defaultLoginStack">
+	        	<param name="scopedModelDriven.scope">session</param>
+	            <param name="scopedModelDriven.name">currentBesoinEquipage</param>
+			</interceptor-ref>
+	        <result name="input">/editBesoinEquipage.jsp</result>
+	        <result name="success">/editBesoinEquipage.jsp</result>
+	     </action>
+    	 <action name="select" method="selectBesoinEquipage" class="fr.firesoft.firetime.action.BesoinAction">
+	    	<interceptor-ref name="defaultLoginStack">
+	        	<param name="scopedModelDriven.scope">session</param>
+	            <param name="scopedModelDriven.name">currentBesoinEquipage</param>
+			</interceptor-ref>
+	        <result name="input">/editBesoinEquipage.jsp</result>
+	        <result name="success">/editBesoinEquipage.jsp</result>
+	     </action>
+     	 <action name="save" method="addBesoinEquipage" class="fr.firesoft.firetime.action.BesoinAction">
+	    	<interceptor-ref name="defaultLoginStack">
+	        	<param name="scopedModelDriven.scope">session</param>
+	            <param name="scopedModelDriven.name">currentBesoinEquipage</param>
+			</interceptor-ref>
+	        <result name="input">/editBesoinEquipage.jsp</result>
+	        <result name="success">/lstBesoin.jsp</result>
+	     </action>
+      	 <action name="delete" method="deleteBesoinEquipage" class="fr.firesoft.firetime.action.BesoinAction">
+	    	<interceptor-ref name="defaultLoginStack">
+	        	<param name="scopedModelDriven.scope">session</param>
+	            <param name="scopedModelDriven.name">currentBesoinEquipage</param>
+			</interceptor-ref>
+	        <result name="input">/lstBesoin.jsp</result>
+	        <result name="success">/lstBesoin.jsp</result>
+	     </action>
+    </package>
+	<package  name="fireTimeWeb.besoin.json" namespace="/besoin/json" extends="struts-default,json-default">
+ 		 <interceptors>
+              	<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+                <interceptor-stack name="defaultLoginStack">
+					<interceptor-ref name="defaultStack" />
+	                <interceptor-ref name="login" />
+	            </interceptor-stack>
+   				<interceptor-stack name="defaultStack">
+     				<interceptor-ref name="params">
+         <!-- 
+            Excludes the jQuery no-cache _ parameter and
+            the Displaytag d-#-X parameter(s)
+         -->
+         				<param name="excludeParams">
+            				_,d-\d+?-[sop]
+         				</param>
+      				</interceptor-ref>
+   				</interceptor-stack>
+   		</interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+	     <action name="besoin_*" method="{1}" class="fr.firesoft.firetime.action.besoin.BesoinJsonAction"  >
+	   		<result type="json" name="success" ></result>
+	   		<result type="json" name="input" ></result>
+	   	 </action>
+	</package>
+
+</struts>

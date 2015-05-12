@@ -1,0 +1,14 @@
+ .box_shadow {
+ 		color : fireBrick;
+        padding : 20px;
+        background-color : Gainsboro ;
+        -moz-box-shadow: 5px 5px 5px #ccc;
+        -webkit-box-shadow: 5px 5px 5px #ccc;
+        box-shadow: 5px 5px 5px #ccc; /* CSS3 */
+		border-radius: 10px; 
+		-moz-border-radius: 10px;
+        behavior: url(css/ie-css3.htc);
+        float: left;
+        margin-bottom: 20px;
+        margin-left: 10px;
+}

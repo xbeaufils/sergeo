@@ -1,0 +1,68 @@
+#tabVertical {
+	float: left;
+}
+
+#divPeriode {
+	float: left;
+	width: 80%;
+}
+
+.rangePlage {
+	background: url(../images/sl_h.gif) no-repeat; 
+}
+
+.timeslider-slider
+{			
+	position: absolute;
+	left: 0;
+	width: 16px;
+	height: 20px;
+	background: url("../images/pt_controls.png") -36px 0px;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+#map_canvas {
+	border: 1px solid black;
+}
+.cursorDebut {
+	width: 10px;
+	float: left;
+}
+.hour {
+	float:left;
+	width:18px;
+	font-size: 0.8em;
+	text-align: center;
+}
+#echelle {
+	clear: both;
+  		height: 20px;
+  		position: relative;
+  		width: 441px;
+  		background-image: url('../images/heure.gif')
+}
+.affichageHeure {
+	display: none;
+	background-color: white;
+	width: 50px;
+}
+.titleHour {
+	display: none;
+}
+.plageHoraire {
+	height: 20px;
+}
+.plage{
+ 			background-color: SteelBlue;
+  		border-right: thin solid red;
+	height: 30px;
+	position: absolute;
+	top: 9px;
+}
+.paddingIntervall {
+  		background-color: Gainsboro;
+}		
+.heurePlage{
+	width: 20px;
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="checkBesoin" namespace="/checkBesoin" extends="struts-default">
+         <interceptors>
+              	<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+                <interceptor-stack name="defaultLoginStack">
+					<interceptor-ref name="defaultStack" />
+	                <interceptor-ref name="login" />
+	            </interceptor-stack>
+        </interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+   	     <action name="view" method="viewBesoinEquipage" class="fr.firesoft.firetime.action.PlanningAction">
+	        <result name="input">/checkPlage.jsp</result>
+	        <result name="success">/checkPlage.jsp</result>
+	     </action>
+    	 <action name="viewEffectif" method="viewBesoinAgent" class="fr.firesoft.firetime.action.PlanningAction">
+	        <result name="input">/viewAgentPlage.jsp</result>
+	        <result name="success">/viewAgentPlage.jsp</result>
+	     </action>
+ 	</package>
+	<package name="planningJson" extends="json-default" namespace="/planning_json">
+        <interceptors>
+              	<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+                <interceptor-stack name="defaultLoginStack">
+					<interceptor-ref name="defaultStack" />
+	                <interceptor-ref name="login" />
+	            </interceptor-stack>
+        </interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+ 		<action name="affecteStatut" class="fr.firesoft.firetime.action.PlanningMensuelAction" method="affecteStatut">
+  			<result type="json">
+   				<param name="root">managedDay</param>
+  			</result>
+ 		</action>
+  		<action name="deleteStatut" class="fr.firesoft.firetime.action.PlanningMensuelAction" method="deleteStatut">
+  			<result type="json">
+   				<param name="root">managedDay</param>
+  			</result>
+ 		</action>
+ 		<action name="makeMonth" class="fr.firesoft.firetime.action.PlanningMensuelAction" method="makeMonth">
+  			<result type="json">
+   				<param name="root">lstJour</param>
+  			</result>
+ 		</action>
+ 		<action name="makeDispoMonth" class="fr.firesoft.firetime.action.PlanningMensuelAction" method="makeDispoMonth">
+  			<result type="json">
+   				<param name="root">lstDispo</param>
+  			</result>
+ 		</action>
+ 		<action name="makeCommentMonth" class="fr.firesoft.firetime.action.PlanningMensuelAction" method="makeCommentMonth">
+   			<result type="json">
+   				<param name="root">lstComment</param>
+  			</result>
+ 		</action>
+	</package>
+</struts>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <package name="fireTimeWeb.horaire" namespace="/horaire" extends="struts-default,json-default">
+        <interceptors>
+              	<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+                <interceptor-stack name="defaultLoginStack">
+					<interceptor-ref name="defaultStack" />
+	                <interceptor-ref name="login" />
+	            </interceptor-stack>
+   				<interceptor-stack name="defaultStack">
+     				<interceptor-ref name="params">
+         <!-- 
+            Excludes the jQuery no-cache _ parameter and
+            the Displaytag d-#-X parameter(s)
+         -->
+         				<param name="excludeParams">
+            				_,d-\d+?-[sop]
+         				</param>
+      				</interceptor-ref>
+   				</interceptor-stack>
+   		</interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+		<global-results>
+			<result name="login">/inscription.jsp</result>
+		</global-results>
+ 	     <action name="cycle_*" method="{1}" class="fr.firesoft.firetime.action.horaire.PeriodeAction">
+	        <result name="input">/plages/accordMainPlage.jsp</result>
+	        <result name="success">/plages/accordMainPlage.jsp</result>
+	     </action>
+	     <action name="viewPlage" method="select" class="fr.firesoft.firetime.action.horaire.PeriodeAction">
+	        <result name="input">/plages/tabPlages.jsp</result>
+	        <result name="success">/plages/tabPlages.jsp</result>
+	     </action>
+ 	     <action name="updatePlage" method="updatePlage" class="fr.firesoft.firetime.action.horaire.PeriodeAction">
+	        <result name="input">/plages/lstPlage.jsp</result>
+	        <result name="success">/plages/lstPlage.jsp</result>
+	     </action>
+ 	     <action name="plage_*" method="{1}" class="fr.firesoft.firetime.action.horaire.PeriodeAction">
+	        <result name="input">/plages/journeePlage.jsp</result>
+	        <result name="success">/plages/journeePlage.jsp</result>
+	     </action>
+	</package>
+	<package  name="fireTimeWeb.horaire.json" namespace="/horaire/json" extends="struts-default,json-default">
+ 		 <interceptors>
+              	<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+                <interceptor-stack name="defaultLoginStack">
+					<interceptor-ref name="defaultStack" />
+	                <interceptor-ref name="login" />
+	            </interceptor-stack>
+   				<interceptor-stack name="defaultStack">
+     				<interceptor-ref name="params">
+         <!-- 
+            Excludes the jQuery no-cache _ parameter and
+            the Displaytag d-#-X parameter(s)
+         -->
+         				<param name="excludeParams">
+            				_,d-\d+?-[sop]
+         				</param>
+      				</interceptor-ref>
+   				</interceptor-stack>
+   		</interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+	     <action name="listPlage" method="viewPlage" class="fr.firesoft.firetime.action.horaire.PlageJsonAction"  >
+	   		<result type="json" name="input" ></result>
+	   		<result type="json" name="success" ></result>
+	   	 </action>
+	     <action name="savePlage" method="updatePlage" class="fr.firesoft.firetime.action.horaire.PlageJsonAction"  >
+	   		<result type="json" name="input" ></result>
+	   		<result type="json" name="success" ></result>
+	   	 </action>
+	</package>
+</struts>

@@ -1,0 +1,121 @@
+#itsthetable {
+	background:#FFFFFF none repeat scroll 0 0;
+	font-family:arial,sans-serif;
+	margin:0 auto;
+	min-width:700px;
+	overflow:auto;
+	padding:1em;
+	width:60%;
+}
+
+table.moduletable {
+	width: 650px;
+	border:1px solid #000000;
+	border-spacing: 0px; }
+
+table.moduletable a, table.moduletable,table.moduletable tbody,table.moduletable tfoot,
+table.moduletable tr,table.moduletable th, table.moduletable td {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+table.moduletable caption {
+	font-size: 1.8em;
+	text-align: left;
+	text-indent: 100px;
+	background: url(../images/bg_caption.gif) left top;
+	height: 40px;
+	color: #FFFFFF;
+	border:1px solid #000000; }
+
+table.moduletable thead th {
+	background: url(../images/bg_firesoft.gif) left;
+	height: 21px;
+	color: #FFFFFF;
+	font-size: 0.8em;
+	font-family: Arial;
+	font-weight: bold;
+	padding: 0px 7px;
+	margin: 20px 0px 0px;
+	text-align: left; }
+
+table.moduletable tbody tr {	background: #ffffff; }
+
+table.moduletable tbody tr.odd {	background: #f0f0f0; }
+
+table.moduletable tbody th {
+	background: url(../images/arrow_white.gif) left center no-repeat;
+	background-position: 5px;
+	padding-left: 40px !important; }
+
+table.moduletable tbody tr.odd th {
+	background: url(../images/arrow_grey.gif) left center no-repeat;
+	background-position: 5px;
+	padding-left: 40px !important; }
+
+table.moduletable tbody th,table.moduletable  tbody td {
+	font-size: 0.8em;
+	line-height: 1.4em;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000000;
+	padding: 10px 7px;
+	border-bottom: 1px solid #800000;
+	text-align: left; }
+
+table.moduletable tbody a {
+	color: #000000;
+	font-weight: bold;
+	text-decoration: none; }
+/*
+table.moduletable tbody a:hover {
+	color: #ffffff;
+	text-decoration: underline; }
+
+table.moduletable tbody tr:hover th {
+	background: #800000 url(../images/arrow_red.gif) left center no-repeat;
+	background-position: 5px;
+	color: #ffffff; }
+
+table.moduletable tbody tr.odd:hover th {
+	background: #000000 url(../images/arrow_black.gif) left center no-repeat;
+	background-position: 5px;
+	color: #ffffff; }
+
+table.moduletable tbody tr:hover th a,table.moduletable  tr.odd:hover th a	{
+	color: #FFFFFF; }
+
+table.moduletable tbody tr:hover td, tr:hover td a,table.moduletable  tr.odd:hover td,table.moduletable  tr.odd:hover td a {
+	background: #800000;
+	color: #ffffff;	 }
+
+table.moduletable tbody tr.odd:hover td, table.moduletable  tr.odd:hover td a{
+	background: #000000;
+	color: #ffffff;	 }
+*/
+table.moduletable tfoot th,table.moduletable tfoot td {
+	background: #ffffff url(../images/bg_firesoft.gif) repeat-x bottom;
+	font-size: 0.8em;
+	color: #ffffff;
+	height: 21px;
+	}
+table.moduletable tfoot a {
+	color: black;
+	font-weight: bold;
+	text-decoration: none; 
+	}
+	
+	
+table.sousmoduletable {
+    width:60%;
+}
+
+table.sousmoduletable thead th,  table.sousmoduletable tfoot th{
+	background: url(../images/bg_firesoft.gif) left;
+	height: 21px;
+	color: #FFFFFF;
+	font-size: 0.8em;
+	font-family: Arial;
+	font-weight: bold;
+	padding: 0px 7px;
+	margin: 20px 0px 0px;
+	text-align: left;
+}

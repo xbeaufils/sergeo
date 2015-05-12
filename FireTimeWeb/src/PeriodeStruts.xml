@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+   	<package name="fireTimeWeb.periode" namespace="/periode" extends="struts-default">
+        <interceptors>
+           	<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+            <interceptor-stack name="defaultLoginStack">
+				<interceptor-ref name="defaultStack" />
+	            <interceptor-ref name="login" />
+	        </interceptor-stack>
+    		<interceptor-stack name="defaultStack">
+     			<interceptor-ref name="params">
+         <!-- 
+            Excludes the jQuery no-cache _ parameter and
+            the Displaytag d-#-X parameter(s)
+         -->
+         			<param name="excludeParams">_,d-\d+?-[sop]</param>
+      			</interceptor-ref>
+   			</interceptor-stack>
+        </interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+		<global-results>
+			<result name="login">/inscription.jsp</result>
+		</global-results>
+		<action name="cycle_*" method="{1}" class="fr.firesoft.firetime.action.horaire.PeriodeAction">
+	        <result name="input">/editPeriodeValidite.jsp</result>
+	        <result name="success">/editPeriodeValidite.jsp</result>
+	    </action>		
+		<action name="createPeriode" method="create" class="fr.firesoft.firetime.action.horaire.PeriodeAction">
+	        <result name="input">/entetePeriode.jsp</result>
+	        <result name="success">/entetePeriode.jsp</result>
+	    </action>		
+	    <action name="view" method="view" class="fr.firesoft.firetime.action.horaire.PeriodeAction">
+	        <result name="input">/entetePeriode.jsp</result>
+	        <result name="success">/PeriodeValidite.jsp</result>
+	    </action>		
+	    <action name="viewPeriode" method="viewPeriode" class="fr.firesoft.firetime.action.horaire.PeriodeAction">
+	        <result name="input">/entetePeriode.jsp</result>
+	        <result name="success">/plages/viewPeriode.jsp</result>
+	    </action>			    
+		<action name="modify" method="selectPeriode" class="fr.firesoft.firetime.action.horaire.PeriodeAction">
+	    	<interceptor-ref name="defaultLoginStack">
+	        	<param name="scopedModelDriven.scope">session</param>
+	            <param name="scopedModelDriven.name">cycle</param>
+			</interceptor-ref>
+	        <result name="input">/entetePeriode.jsp</result>
+	        <result name="success">/entetePeriode.jsp</result>
+	    </action>		
+	  	<action name="statut_*" method="{1}"  class="fr.firesoft.firetime.action.StatutAction" >
+	    	<interceptor-ref name="defaultLoginStack">
+	        	<param name="scopedModelDriven.scope">session</param>
+	            <param name="scopedModelDriven.name">statut</param>
+			</interceptor-ref>
+	        <result name="input">/accordMainPlage.jsp</result>
+	        <result name="success">/statut.jsp</result>
+	    </action>
+	  	<action name="selectStatut" method="select" class="fr.firesoft.firetime.action.StatutAction" >
+	    	<interceptor-ref name="defaultLoginStack">
+	        	<param name="scopedModelDriven.scope">session</param>
+	            <param name="scopedModelDriven.name">statut</param>
+			</interceptor-ref>
+	        <result name="input">/statut.jsp</result>
+	        <result name="success">/statut.jsp</result>
+	    </action>
+	  	<action name="saveStatut" method="save"  class="fr.firesoft.firetime.action.StatutAction" >
+	    	<interceptor-ref name="defaultLoginStack">
+	        	<param name="scopedModelDriven.scope">session</param>
+	            <param name="scopedModelDriven.name">statut</param>
+			</interceptor-ref>
+	        <result name="input">/accordMainPlage.jsp</result>
+	        <result name="success">/statusAction.jsp</result>
+	    </action>
+	  	<action name="viewStatut" method="view" class="fr.firesoft.firetime.action.StatutAction" >
+	    	<interceptor-ref name="defaultLoginStack">
+	        	<param name="scopedModelDriven.scope">session</param>
+	            <param name="scopedModelDriven.name">statut</param>
+			</interceptor-ref>
+	        <result name="input">/statut.jsp</result>
+	        <result name="success">/lstStatut.jsp</result>
+	    </action>
+	  	<action name="savePeriode" method="save"  class="fr.firesoft.firetime.action.horaire.PeriodeAction" >
+	    	<interceptor-ref name="defaultLoginStack">
+	        	<param name="scopedModelDriven.scope">session</param>
+	            <param name="scopedModelDriven.name">currentPeriode</param>
+			</interceptor-ref>
+	        <result name="input">/entetePeriode.jsp</result>
+	        <result name="success">/PeriodeValidite.jsp</result>
+	     </action>
+	</package>
+	<package  name="fireTimeWeb.periode.json" namespace="/periode/json" extends="struts-default,json-default">
+ 		 <interceptors>
+              	<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+                <interceptor-stack name="defaultLoginStack">
+					<interceptor-ref name="defaultStack" />
+	                <interceptor-ref name="login" />
+	            </interceptor-stack>
+   				<interceptor-stack name="defaultStack">
+     				<interceptor-ref name="params">
+         <!-- 
+            Excludes the jQuery no-cache _ parameter and
+            the Displaytag d-#-X parameter(s)
+         -->
+         				<param name="excludeParams">
+            				_,d-\d+?-[sop]
+         				</param>
+      				</interceptor-ref>
+   				</interceptor-stack>
+   		</interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+	     <action name="cycle_*" method="{1}" class="fr.firesoft.firetime.action.horaire.PeriodeJsonAction"  >
+	   		<result type="json" name="success">
+	     		<param name="root">nodes</param>
+	   		</result>
+	   		<result type="json" name="input" >  </result>
+	   	 </action>
+	     <action name="viewListStatut" method="viewListStatut" class="fr.firesoft.firetime.action.horaire.StatutJsonAction"  >
+	   		<result type="json" name="success"></result>
+	   		<result type="json" name="input" > </result>
+	   	 </action>
+	   	 <action name="viewListPlage" method="viewListPlage" class="fr.firesoft.firetime.action.horaire.StatutJsonAction"  >
+	   		<result type="json" name="success"></result>
+	   		<result type="json" name="input" > </result>
+	   	 </action> 
+
+	     <action name="saveStatut" method="save" class="fr.firesoft.firetime.action.horaire.StatutJsonAction"  >
+	   		<result type="json" name="success"></result>
+	   		<result type="json" name="input" > </result>
+	   	 </action>
+	</package>
+
+</struts>

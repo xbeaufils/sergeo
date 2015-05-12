@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="fireTimeWeb.loader" extends="struts-default,json-default" namespace="/load">
+         <interceptors>
+              	<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+                <interceptor-stack name="defaultLoginStack">
+					<interceptor-ref name="defaultStack" />
+	                <interceptor-ref name="login" />
+	            </interceptor-stack>
+        </interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+		<global-results>
+			<result name="login">/inscription.jsp</result>
+		</global-results>
+        <action name="viewUpload" method="view" class="fr.firesoft.firetime.action.LoaderAction">
+	        <result name="input">/load/dlgChargement.jsp</result>
+	        <result name="success">/load/dlgChargement.jsp</result>
+	     </action>
+  	     <action name="fileUpload" method="upload" class="fr.firesoft.firetime.action.LoaderAction">
+	        <result name="input">/chargement.jsp</result>
+	        <result name="success">/chargement.jsp</result>
+	     </action>
+  	     <action name="trans" method="transfert" class="fr.firesoft.firetime.action.LoaderAction">
+	        <result name="input">/chargement.jsp</result>
+	        <result name="success">/chargement.jsp</result>
+	        <result name="SITUATION">/stepChargementAffectation.jsp</result>
+	        <result name="AGENT">/stepChargementAgent.jsp</result>
+	        <result name="COMPETENCE">/stepChargementEmploi.jsp</result>
+	     </action>
+	     <action name="grade_*" method="{1}" class="fr.firesoft.firetime.action.GradeAction" >
+	     	<result type="json" name="success" ></result>
+	     	<result name="input">/grade.jsp</result>
+	     </action>
+	     <action name="emploi_*" method="{1}" class="fr.firesoft.firetime.action.EmploiOperationnelAction" >
+	     	<result type="json" name="success" ></result>
+	     	<result name="input">/emploiOperationnel.jsp</result>
+	     </action>
+    </package>    
+</struts>

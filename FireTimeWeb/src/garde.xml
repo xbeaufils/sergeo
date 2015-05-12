@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="fireTimeWeb.garde" namespace="/garde" extends="struts-default">
+         <interceptors>
+              	<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+                <interceptor-stack name="defaultLoginStack">
+					<interceptor-ref name="defaultStack" />
+	                <interceptor-ref name="login" />
+	            </interceptor-stack>
+        </interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+		<global-results>
+			<result name="login">/inscription.jsp</result>
+		</global-results>
+ 	    <action name="besoin_*" method="{1}" class="fr.firesoft.firetime.action.BesoinAction">
+	    	<interceptor-ref name="defaultLoginStack">
+	        	<param name="scopedModelDriven.scope">session</param>
+	            <param name="scopedModelDriven.name">currentCritere</param>
+			</interceptor-ref>
+	        <result name="input">/plageHoraire.jsp</result>
+	        <result name="success">/plageHoraire.jsp</result>
+	     </action>
+  	     <action name="piquet_*" method="{1}" class="fr.firesoft.firetime.action.PiquetAction">
+	        <result name="input">/piquet.jsp</result>
+	        <result name="success">/piquet.jsp</result>
+	     </action>
+   	     <action name="affecterPiquet" method="affecte" class="fr.firesoft.firetime.action.PiquetAction">
+	        <result name="input">/piquetBesoin.jsp</result>
+	        <result name="success">/piquetBesoin.jsp</result>
+	     </action>
+    	     <action name="piquetOfPlage" method="selectPlageHoraire" class="fr.firesoft.firetime.action.PiquetAction">
+	        <result name="input">/piquetPlage.jsp</result>
+	        <result name="success">/piquetPlage.jsp</result>
+	     </action>
+  	     <action name="detailPiquet" method="selectForType" class="fr.firesoft.firetime.action.PiquetAction">
+	        <result name="input">/affectationPiquet.jsp</result>
+	        <result name="success">/affectationPiquet.jsp</result>
+	     </action>
+    </package>	
+    <package  name="fireTimeWeb.garde.json" namespace="/garde/json" extends="struts-default,json-default">
+ 		 <interceptors>
+              	<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+                <interceptor-stack name="defaultLoginStack">
+					<interceptor-ref name="defaultStack" />
+	                <interceptor-ref name="login" />
+	            </interceptor-stack>
+   				<interceptor-stack name="defaultStack">
+     				<interceptor-ref name="params">
+         <!-- 
+            Excludes the jQuery no-cache _ parameter and
+            the Displaytag d-#-X parameter(s)
+         -->
+         				<param name="excludeParams">
+            				_,d-\d+?-[sop]
+         				</param>
+      				</interceptor-ref>
+   				</interceptor-stack>
+   		</interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+	    <action name="affecte" method="affecte" class="fr.firesoft.firetime.action.garde.PiquetJsonAction"  >
+	   		<result type="json" name="success" ></result>
+	   		<result type="json" name="input" ></result>
+	   	</action>
+	    <action name="delete" method="delete" class="fr.firesoft.firetime.action.garde.PiquetJsonAction"  >
+	   		<result type="json" name="success" ></result>
+	   		<result type="json" name="input" ></result>
+	   	</action>
+	</package>
+    
+  </struts>

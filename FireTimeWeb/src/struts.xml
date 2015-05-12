@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!--  constant name="struts.ui.templateDir" value="fr/firesoft/firetime/template" / -->
+	<include file="struts-default.xml"/>
+	<include file="PeriodeStruts.xml"></include>
+	<include file="EquipageStruts.xml"></include>
+	<include file="EffectifStruts.xml"></include>
+	<include file="BesoinStruts.xml"></include>
+	<include file="HoraireStruts.xml"></include>
+	<include file="PlanningStruts.xml"></include>
+	<include file="garde.xml"></include>
+	<include file="load.xml"></include>
+	
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"/>	
+	
+	<package name="fireTimeWeb.planning" extends="struts-default" namespace="/planning">
+        <interceptors>
+              	<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+                <interceptor-stack name="defaultLoginStack">
+					<interceptor-ref name="defaultStack" />
+	                <interceptor-ref name="login" />
+	            </interceptor-stack>
+        </interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+		<global-results>
+			<result name="login">/inscription.jsp</result>
+		</global-results>
+		<action name="mensuel_*" method="{1}" class="fr.firesoft.firetime.action.PlanningAction">
+            <result name="input">/planningMensuel.jsp</result>
+            <result name="success">/planningMensuel.jsp</result>
+		</action>
+		<action name="besoin_*" method="{1}" class="fr.firesoft.firetime.action.PlanningAction">
+            <result name="input">/planningBesoin.jsp</result>
+            <result name="success">/planningBesoin.jsp</result>			
+		</action>
+		<action name="ajaxBesoin_*" method="{1}" class="fr.firesoft.firetime.action.PlanningAction">
+            <result name="input">/planningBesoinAjax.jsp</result>
+            <result name="success">/planningBesoinAjax.jsp</result>			
+		</action>
+		<action name="hebdo_*" method="{1}" class="fr.firesoft.firetime.action.PlanningAction">
+            <result name="input">/planningHebdo.jsp</result>
+            <result name="success">/planningHebdo.jsp</result>
+		</action>
+		<action name="ajax_*" method="{1}" class="fr.firesoft.firetime.action.PlanningAction">
+            <result name="input">/planningTableAjax.jsp</result>
+            <result name="success">/planningTableAjax.jsp</result>
+		</action>
+	</package>
+    <package name="fireTimeWeb.planning.json" namespace="/rpc" extends="json-default">
+        <interceptors>
+              	<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+                <interceptor-stack name="defaultLoginStack">
+					<interceptor-ref name="defaultStack" />
+	                <interceptor-ref name="login" />
+	            </interceptor-stack>
+        </interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+		<action name="jsonCall" method="smd" class="fr.firesoft.firetime.action.PlanningAction">
+ 			<interceptor-ref name="json">
+				<param name="enableSMD">true</param>
+			</interceptor-ref>
+			<result type="json">
+				<param name="enableSMD">true</param>
+			</result>
+		</action>         
+    </package>
+   	<package name="fireTimeWeb.cycle" namespace="/cycle" extends="struts-default">
+        <interceptors>
+              	<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+                <interceptor-stack name="defaultLoginStack">
+					<interceptor-ref name="defaultStack" />
+	                <interceptor-ref name="login" />
+	            </interceptor-stack>
+        </interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+		<global-results>
+			<result name="login">/inscription.jsp</result>
+		</global-results>
+ 	     <action name="cycle_*" method="{1}" class="fr.firesoft.firetime.action.CycleAction">
+	 	    <interceptor-ref name="defaultStack">
+				<param name="scopedModelDriven.scope">session</param>
+				<param name="scopedModelDriven.name">currentVentilation</param>
+			</interceptor-ref>		
+	        <result name="input">/lstCycleTravail.jsp</result>
+	        <result name="success">/lstCycleTravail.jsp</result>
+	     </action>
+	     <action name="savePeriode" method="save" class="fr.firesoft.firetime.action.PeriodeValiditeAction">
+	 	    <interceptor-ref name="defaultStack">
+				<param name="scopedModelDriven.scope">session</param>
+				<param name="scopedModelDriven.name">currentVentilation</param>
+			</interceptor-ref>		
+	        <result name="input">/lstCycleTravail.jsp</result>
+	        <result name="success">/lstCycleTravail.jsp</result>
+	     </action>
+	     <action name="sequence_*" method="{1}" class="fr.firesoft.firetime.action.SequenceAction">
+	        <result name="input">/lstCycleTravail.jsp</result>
+	        <result name="success">/lstCycleTravail.jsp</result>
+	     </action>
+	</package>
+	<package name="fireTimeWeb.config" extends="struts-default" namespace="/config">
+        <interceptors>
+			<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+           	<interceptor-stack name="defaultLoginStack">
+				<interceptor-ref name="defaultStack" />
+            	<interceptor-ref name="login" />
+        	</interceptor-stack>
+        </interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+		<global-results>
+			<result name="login">/inscription.jsp</result>
+		</global-results>
+		<action name="welcome"  class="fr.firesoft.firetime.action.WelcomeAction">
+            <result name="input">/welcome.jsp</result>
+            <result name="success">/welcome.jsp</result>
+            <result name="config">/configuration.jsp</result>            
+		</action> 
+  	     <action name="fileUploadAffection" method="upload" class="fr.firesoft.firetime.action.LoaderAction">
+	        <result name="input">/stepChargementAffectation.jsp</result>
+	        <result name="success">/stepChargementAffectation.jsp</result>
+	        <result name="successzaza">/load/chargement.jsp</result>
+	     </action>
+  	     <action name="fileUploadAgent" method="upload" class="fr.firesoft.firetime.action.LoaderAction">
+	        <result name="input">/stepChargementAgent.jsp</result>
+	        <result name="success">/stepChargementAgent.jsp</result>
+	        <result name="successzaza">/load/chargement.jsp</result>
+	     </action>
+  	     <action name="fileUploadEmploi" method="upload" class="fr.firesoft.firetime.action.LoaderAction">
+	        <result name="input">/stepChargementEmploi.jsp</result>
+	        <result name="success">/stepChargementEmploi.jsp</result>
+	        <result name="successzaza">/load/chargement.jsp</result>
+	     </action>
+	</package>
+	<package name="firetimeWeb.root" extends="struts-default" namespace="/">
+		<global-results>
+			<result name="login">/inscription.jsp</result>
+		</global-results>
+		<action name="inscription" class="fr.firesoft.firetime.action.InscriptionAction">
+            <result name="input">/inscription.jsp</result>
+            <result name="success">/inscription.jsp</result>
+		</action>
+		<action name="ConnectLiferay" class="fr.firesoft.portal.client.authentification.ConnectLiferay">
+			<result name="input"></result>
+			<result name="success">index.jsp</result>
+		</action>
+	</package>
+    <package name="fireTimeWeb.print" namespace="/print" extends="jasperreports-default">
+         <interceptors>
+			<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+           	<interceptor-stack name="defaultLoginStack">
+				<interceptor-ref name="defaultStack" />
+            	<interceptor-ref name="login" />
+        	</interceptor-stack>
+        </interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+         <action name="planning" method="print" class="fr.firesoft.firetime.action.PlanningAction">
+             <result name="success" type="jasper">
+                <param name="location">/report/PlanningMensuel.jasper</param>
+                <param name="dataSource">lstJourReport</param>
+                <param name="format">PDF</param>
+              </result>
+         </action>
+          <action name="garde" method="print" class="fr.firesoft.firetime.action.PiquetAction">
+             <result name="success" type="jasper">
+                <param name="location">/report/FeuilleGarde.jasper</param>
+                <param name="dataSource">lstReport</param>
+                <param name="format">PDF</param>
+              </result>
+         </action>
+    </package>    
+ </struts>

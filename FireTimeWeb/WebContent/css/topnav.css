@@ -1,0 +1,45 @@
+ul#topnav {
+	margin: 0; padding: 0;
+	float: left;
+	width: 100%;
+	list-style: none;
+	position: relative; /*--Set relative positioning on the unordered list itself - not on the list item--*/
+	font-size: 1em;
+	background: url(../images/bgOFF.gif) repeat-x;
+	font-weight: bold;
+}
+ul#topnav li {
+	float: left;
+	margin: 0; padding: 0;
+	border-right: 1px solid #555; /*--Divider for each parent level links--*/
+}
+ul#topnav li a {
+	padding: 10px 15px;
+	display: block;
+	color: firebrick;
+	text-decoration: none;
+}
+ul#topnav li:hover { background: url(../images/bgON.gif) repeat-x; }
+/*--Notice the hover color is on the list item itself, not on the link. This is so it can stay highlighted even when hovering over the subnav--*/
+
+ul#topnav li span {
+	float: left;
+	padding: 15px 0;
+	position: absolute;
+	left: 0; top:35px;
+	display: none; /*--Hide by default--*/
+	width: 970px;
+	background: lightgrey;
+	color: #firebrick;
+	/*--Bottom right rounded corner--*/
+	-moz-border-radius-bottomright: 5px;
+	-khtml-border-radius-bottomright: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	/*--Bottom left rounded corner--*/
+	-moz-border-radius-bottomleft: 5px;
+	-khtml-border-radius-bottomleft: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+}
+ul#topnav li:hover span { display: block; } /*--Show subnav on hover--*/
+ul#topnav li span a { display: inline; } /*--Since we declared a link style on the parent list link, we will correct it back to its original state--*/
+ul#topnav li span a:hover {text-decoration: underline;}

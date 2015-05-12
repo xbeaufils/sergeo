@@ -1,0 +1,53 @@
+.menucontextuel{
+	position: absolute;
+	display: none;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	width: 200px;
+	font-size: 0.9em;
+	z-index: 2;
+}
+
+.menucontextuel ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.menucontextuel li{
+	height: 2em;
+	line-height: 2em;
+}
+
+.menucontextuel a{
+	text-decoration: none;
+	display: block;
+	color: #000;
+	padding-left: 15px;
+}
+
+.menucontextuel a:hover{
+	background-color: #B30000;
+	color: #fff;
+}
+
+.box{
+	width: 150px;
+	height: 150px;
+	background: #eee none;
+	border: 1px solid #ddd;
+	font-size: 0.9em;
+	cursor: help;
+}
+
+#box1{
+	position: absolute;
+	top: 50px;
+	left: 10px;
+}
+
+#box2{
+	position: absolute;
+	top: 50px;
+	left: 200px;
+}

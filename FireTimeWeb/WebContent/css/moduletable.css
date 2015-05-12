@@ -1,0 +1,20 @@
+table.moduletable {
+	width: 100%;
+}
+
+table.moduletable tr th {
+	background: url('../images/bg_moduletable.jpeg') repeat-x;
+	font-weight: bold;
+	color: white;
+}
+table.moduletable tr.pair {
+	background-color: gainsboro; 
+	color: black;
+}
+table.moduletable tr.impair {
+	background-color: whiteSmoke; 
+	color: black;
+}
+table.moduletable td {
+	padding: 5px;
+}

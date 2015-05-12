@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="fireTimeWeb.effectif" extends="struts-default" namespace="/effectif">
+        <interceptors>
+              	<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+                <interceptor-stack name="defaultLoginStack">
+					<interceptor-ref name="defaultStack" />
+	                <interceptor-ref name="login" />
+	            </interceptor-stack>
+        </interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+		<global-results>
+			<result name="login">/inscription.jsp</result>
+		</global-results>
+		<action name="list_*" method="{1}" class="fr.firesoft.firetime.action.EffectifAction">
+            <result name="input">/lstAgent.jsp</result>
+            <result name="success">/lstAgent.jsp</result>
+		</action>
+		<action name="agent_*" method="{1}" class="fr.firesoft.firetime.action.EffectifAction">
+            <result name="input">/agent.jsp</result>
+            <result name="success">/agent.jsp</result>
+		</action>
+		<action name="viewAffectation" method="viewAffectation" class="fr.firesoft.firetime.action.EffectifAction">
+            <result name="input">/viewAffectation.jsp</result>
+            <result name="success">/viewAffectation.jsp</result>
+		</action>
+		<action name="saveAffectation" method="save" class="fr.firesoft.firetime.action.AffectationAction">
+            <result name="input">/viewAffectation.jsp</result>
+            <result name="success">/statusAction.jsp</result>
+		</action>
+		<action name="viewCompetence" method="viewCompetence" class="fr.firesoft.firetime.action.EffectifAction">
+            <result name="input">/viewCompetences.jsp</result>
+            <result name="success">/viewCompetences.jsp</result>
+		</action>
+		<action name="saveCompetence" method="save" class="fr.firesoft.firetime.action.CompetenceAction">
+            <result name="input">/editCompetences.jsp</result>
+            <result name="success">/statusAction.jsp</result>
+		</action>
+		<action name="viewHoraire" method="viewHoraire" class="fr.firesoft.firetime.action.EffectifAction">
+            <result name="input">/viewHoraire.jsp</result>
+            <result name="success">/viewHoraire.jsp</result>
+		</action>
+		<action name="affectation_*" method="{1}" class="fr.firesoft.firetime.action.AffectationAction">
+            <result name="input">/agent.jsp</result>
+            <result name="success">/editAffectation.jsp</result>
+		</action>
+		<action name="competence_*" method="{1}" class="fr.firesoft.firetime.action.CompetenceAction">
+            <result name="input">/agent.jsp</result>
+            <result name="success">/editCompetence.jsp</result>
+		</action>
+	 </package>
+	<package  name="fireTimeWeb.effectif.json" namespace="/effectif/json" extends="struts-default,json-default">
+ 		 <interceptors>
+              	<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+                <interceptor-stack name="defaultLoginStack">
+					<interceptor-ref name="defaultStack" />
+	                <interceptor-ref name="login" />
+     				<interceptor-ref name="params">
+         <!-- 
+            Excludes the jQuery no-cache _ parameter and
+            the Displaytag d-#-X parameter(s)
+         -->
+         				<param name="excludeParams">
+            				_,d-\d+?-[sop]
+         				</param>
+      				</interceptor-ref>
+	            </interceptor-stack>
+   		</interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+	     <action name="ListAgent" method="makeListAgent" class="fr.firesoft.firetime.action.effectif.AgentJsonAction"  >
+	   		<result type="json" name="success" ></result>
+	   		<result type="json" name="input" ></result>
+	   	 </action>
+	   	 <action name="ListCompetence" method="makeListCompetenceForAgent" class="fr.firesoft.firetime.action.effectif.AgentJsonAction"  >
+	   		<result type="json" name="success" ></result>
+	   		<result type="json" name="input" ></result>
+	   	 </action>
+	   	 <action name="DeleteCompetence" method="deleteCompetence" class="fr.firesoft.firetime.action.effectif.AgentJsonAction"  >
+	   		<result type="json" name="success" ></result>
+	   		<result type="json" name="input" ></result>
+	   	 </action>
+	   	 <action name="ListAffectations" method="viewAffectation" class="fr.firesoft.firetime.action.effectif.AffectationJsonAction" >
+	   		<result type="json" name="success" ></result>
+	   		<result type="json" name="input" ></result>
+	   	 </action>
+	</package>
+
+</struts>

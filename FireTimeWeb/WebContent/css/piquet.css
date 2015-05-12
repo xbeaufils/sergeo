@@ -1,0 +1,30 @@
+.equipage {
+	float:left;
+	margin:10px;
+	border: LightSlateGray solid thin;
+}
+.listEquipage {
+	/* background-color:Gainsboro;*/
+	padding-bottom:0;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:0;
+}
+
+.enteteEquipage {
+	color: white; 
+	font-weight: bold; 
+	text-align: center; 
+	background-color: fireBrick; 
+	font-size: 14px;
+}
+.listEquipage label {
+	color:dimGray;
+	font-size:12px;
+	font-weight:bold;
+}
+.personnel {
+	margin-left: 20px; 
+	color: fireBrick; 
+	font-size: 12px;
+}

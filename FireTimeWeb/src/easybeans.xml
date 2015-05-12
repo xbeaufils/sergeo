@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <easybeans xmlns="http://org.ow2.easybeans.server">
+            <!-- Define components that will be started at runtime -->
+            <components>
+                <!-- RMI/JRMP will be used as protocol layer -->
+                <rmi>
+                    <protocol name="jrmp" port="1099" hostname="localhost" />
+                </rmi>
+                <!-- Start a transaction service -->
+                <tm />
+                <!-- Start a JMS provider -->
+                <jms port="16030" hostname="localhost" />
+                <!-- Creates a JDBC pool with scmDS JNDI name -->
+                <jdbcpool jndiName="firesoftdb" username="root"
+                        password="xavier" url="jdbc:mysql://localhost:3306/firesoft"
+                        driver="com.mysql.jdbc.Driver" />
+                <!-- Start smartclient server with a link to the rmi
+component-->
+                <!--<smart-server port="2503" rmi="#rmi" />-->
+            </components>
+        </easybeans> 

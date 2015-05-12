@@ -1,0 +1,68 @@
+
+
+#titleMenu {
+	background-color: brown; 
+	color: white;
+	font-weight: bold;
+}
+
+#currentType {
+	border-style: solid; 
+	border-width: 1px 0 1px 1px;
+	background-color: lightgrey;
+	color: DimGrey;
+	font-weight: bold;
+}
+
+.menuLeftItem {
+	border-style: solid groove solid outset; 
+	border-top: 1px solid white; 
+	border-bottom-width: 1px; 
+	background-color: lightgrey; 
+	border-left-width: 3px; 
+	border-right-color: silver;
+	padding-right:10px;
+	text-align:right;
+}
+.menuLeftItem a {
+	color:dimGray;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+#choiceLeft {
+	float: left; 
+	width: 150px; 
+	margin-top: 20px;
+}
+
+.titreVisu {
+	background-attachment:scroll;
+	background-color:transparent;
+	background-image:url(../images/bg_firesoft.gif);
+	background-position:left center;
+	background-repeat:repeat;
+	color:white;
+	font-weight:bold;
+}
+
+#visuLeft {
+	background-color: lightgrey;	
+	width: 400px;
+	height: 300px;
+	float: left;
+}
+.emploi {
+	background-color:gray;
+	color:white;
+	font-size:0.9em;
+	margin-left:25px;
+	margin-right:25px;
+}
+
+.emploiOdd {
+	background-color:silver;
+	font-size:0.9em;
+	margin-left:25px;
+	margin-right:25px;
+}

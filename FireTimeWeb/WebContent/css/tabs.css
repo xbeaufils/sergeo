@@ -1,0 +1,50 @@
+.tabs_menu {
+	background:#FFFFFF url(../images/fond_tabs.gif) repeat-x scroll 0 100%; 
+	height:24px;
+	
+}
+
+.tabs_menu a {
+	color:fireBrick;
+	font-size:12px;
+	font-weight:bold;
+	padding:0 5px;
+	text-decoration:none;
+}
+.tabs_menu a:visited {
+	color:fireBrick;
+	font-weight:bold;
+	padding:0 5px;
+	text-decoration:none;
+}
+
+.tabs_menu img {
+	vertical-align: middle;	
+}
+.tabs_actif {
+	background:#FFFFFF url(../images/fond_actif.gif) repeat-x scroll 0 0;
+	float:left;
+	height:24px;
+}
+	
+.tabs_inactif {
+	background:#FFFFFF url(../images/fond_inactif.gif) repeat-x scroll 0 0;
+	float:left;
+	height:24px;
+}
+span.title {
+	color:#DF393D;
+	font-weight:bold;
+	padding:0 5px;
+}
+.tabs_coinGauche_Actif {
+}
+
+.tabs_coinGauche_inactif {
+}
+
+.tabs_coinDroit_Actif {
+}
+
+.tabs_coinDroit_Actif {
+}

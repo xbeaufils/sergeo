@@ -1,0 +1,76 @@
+/*
+ * From http://wpaoli.building58.com/2009/08/horizontal-nav-with-animated-drop-down-sub-navs-jquery-plugin/
+ */
+body {
+    font-family: arial;
+    color: #fff;
+}
+
+ul.horizontal-dropdown {
+    position: relative;
+    float: left; 
+	list-style-type: none;
+	border-top:4px solid #B30000;
+	font-size:11px;
+	font-weight:bold;
+	font-family:Arial,Verdana,Helvitica,sans-serif;
+	background:transparent url(../images/bgOFF.gif) repeat-x top left;
+
+}
+
+ul.horizontal-dropdown a {
+    display: block;
+    padding: 10px 40px;
+    text-decoration: none;
+    color: #666;
+    /* background: url(../images/bgDIVIDER.gif) no-repeat right top;*/
+}
+
+ul.horizontal-dropdown li.last a {
+    /* background: none;*/
+    clear:left;
+}
+
+ul.horizontal-dropdown li {
+    float: left;
+    padding: 0;
+   	background: url(../images/bgDIVIDER.gif) no-repeat right top;
+ 	/* background:transparent url(../images/bgOFF.gif) repeat-x top left; */
+    /* background: url(../images/top-bg.gif) repeat-x; */
+}
+
+ul.horizontal-dropdown li.hover {
+    /*background-position: bottom;*/
+	background:transparent url(../images/bgON.gif) repeat-x top left; 
+}
+
+/*sub nav*/
+ul.horizontal-dropdown ul {
+    position: absolute;
+    left: 0;
+    /*background: #3fb306;*/
+	background: #666;
+    overflow: hidden;
+}
+
+ul.horizontal-dropdown ul li {
+    background: transparent;
+    padding: 0 0 0 0;
+    float: left;
+}
+
+ul.horizontal-dropdown ul li a {
+    position: relative;
+    top: 0;
+    left: 0;
+    /*background: #3fb306;*/
+	background: #D8D8D8;
+    padding: 0;
+    display: block;
+    float: left;
+    padding: 10px 20px;
+}
+
+ul.horizontal-dropdown ul li a:hover {
+    color: #0609b3;
+}

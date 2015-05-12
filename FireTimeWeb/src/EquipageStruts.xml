@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+ 	<package name="fireTimeWeb.agres" namespace="/agres" extends="struts-default">
+        <interceptors>
+           	<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+               	<interceptor-stack name="defaultLoginStack">
+				<interceptor-ref name="defaultStack" />
+                <interceptor-ref name="login" />
+            </interceptor-stack>
+       </interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+		<global-results>
+			<result name="login">/inscription.jsp</result>
+		</global-results>
+ 	     <action name="view" method="view" class="fr.firesoft.firetime.action.equipage.EquipageAction">
+	        <result name="input">/definitionEquipage.jsp</result>
+	        <result name="success">/definitionEquipage.jsp</result>
+	     </action>
+ 	     <action name="save" method="save" class="fr.firesoft.firetime.action.equipage.EquipageAction">
+	    	<interceptor-ref name="defaultLoginStack">
+	        	<param name="scopedModelDriven.scope">session</param>
+	            <param name="scopedModelDriven.name">currentEquipage</param>
+ 			</interceptor-ref>
+	        <result name="input">/definitionEquipage.jsp</result>
+	        <result name="success">/definitionEquipage.jsp</result>
+	     </action>
+   	     <action name="equipage_*" method="{1}" class="fr.firesoft.firetime.action.equipage.EquipageAction">
+	    	<interceptor-ref name="defaultLoginStack">
+	        	<param name="scopedModelDriven.scope">session</param>
+	            <param name="scopedModelDriven.name">currentEquipage</param>
+ 			</interceptor-ref>
+	        <result name="input">/editAgres.jsp</result>
+	        <result name="success">/editAgres.jsp</result>
+	     </action>
+	</package>
+ 	<package name="fireTimeWeb.poste" namespace="/poste" extends="struts-default">
+        <interceptors>
+           	<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+               	<interceptor-stack name="defaultLoginStack">
+				<interceptor-ref name="defaultStack" />
+                <interceptor-ref name="login" />
+            </interceptor-stack>
+        </interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+		<global-results>
+			<result name="login">/inscription.jsp</result>
+		</global-results>
+ 	     <action name="view" method="view" class="fr.firesoft.firetime.action.equipage.PosteAction">
+	        <result name="input">/definitionEquipage.jsp</result>
+	        <result name="success">/definitionEquipage.jsp</result>
+	     </action>
+  	     <action name="poste_*" method="{1}" class="fr.firesoft.firetime.action.equipage.PosteAction">
+	    	<interceptor-ref name="defaultLoginStack">
+	        	<param name="scopedModelDriven.scope">session</param>
+	            <param name="scopedModelDriven.name">currentPoste</param>
+			</interceptor-ref>
+	        <result name="input">/viewEquipage.jsp</result>
+	        <result name="success">/viewEquipage.jsp</result>
+	     </action>
+ 	     <action name="equipage_*" method="{1}" class="fr.firesoft.firetime.action.equipage.PosteAction">
+	    	<interceptor-ref name="defaultLoginStack">
+	        	<param name="scopedModelDriven.scope">session</param>
+	            <param name="scopedModelDriven.name">currentPoste</param>
+			</interceptor-ref>
+	        <result name="input">/editEquipage.jsp</result>
+	        <result name="success">/editEquipage.jsp</result>
+	     </action>
+	</package>
+	<package  name="fireTimeWeb.equipage.json" namespace="/equipage/json" extends="struts-default,json-default">
+ 		 <interceptors>
+              	<interceptor name="login" class="fr.firesoft.firetime.interceptors.X509CertificateInterceptor" />
+                <interceptor-stack name="defaultLoginStack">
+					<interceptor-ref name="defaultStack" />
+	                <interceptor-ref name="login" />
+	            </interceptor-stack>
+   				<interceptor-stack name="defaultStack">
+     				<interceptor-ref name="params">
+         <!-- 
+            Excludes the jQuery no-cache _ parameter and
+            the Displaytag d-#-X parameter(s)
+         -->
+         				<param name="excludeParams">
+            				_,d-\d+?-[sop]
+         				</param>
+      				</interceptor-ref>
+   				</interceptor-stack>
+   		</interceptors>
+		<!-- Make the defaultLoginStack the default one used
+                for all actions unless otherwise configured. -->
+        <default-interceptor-ref name="defaultLoginStack" />
+	     <action name="view" method="view" class="fr.firesoft.firetime.action.besoin.EquipageJsonAction"  >
+	   		<result type="json" name="success" ></result>
+	   		<result type="json" name="input" ></result>
+	   	 </action>
+	     <action name="viewPoste" method="viewPoste" class="fr.firesoft.firetime.action.besoin.EquipageJsonAction"  >
+	   		<result type="json" name="success" ></result>
+	   		<result type="json" name="input" ></result>
+	   	 </action>
+	    <action name="editPoste" method="editPoste" class="fr.firesoft.firetime.action.besoin.EquipageJsonAction"  >
+	   		<result type="json" name="success" ></result>
+	   		<result type="json" name="input" ></result>
+	   	</action>
+	   	<action name="SMDAction" class="fr.firesoft.firetime.action.besoin.EquipageJsonAction" method="smd">
+	        <interceptor-ref name="json">
+	            <param name="enableSMD">true</param>
+	        </interceptor-ref>
+	        <result type="json">
+	             <param name="enableSMD">true</param>
+	        </result>
+	    </action>
+	</package>
+</struts>
